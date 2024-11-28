@@ -1,11 +1,14 @@
 # Data-for-Good---Electricity-Capacity
 
 
-
 ## Changelog :
 
-Date : 25/11/2024
 
+Date : 28/11/2024
+- Mise à jour du rapport des données : ajout des derniers éléments et fin du rapport. Ouvrir de préférence avec Google Docs pour un affichage optimal.
+  
+
+Date : 25/11/2024
 - Mise à jour du rapport des données (mise en forme, format .docx). Ouvrir de préférence avec Google Docs pour un affichage optimal.
 
 

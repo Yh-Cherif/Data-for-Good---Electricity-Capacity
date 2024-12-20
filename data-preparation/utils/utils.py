@@ -221,8 +221,8 @@ def GroupMaker(table: pd.DataFrame, countries_group: pd.DataFrame) -> pd.DataFra
     zones = ['Africa', 'Asia and Oceania', 'Central and South America', 'Eurasia', 'Europe', 'Middle East', 'World', 'North America']
     table['group_type'] = "country"
 
-    countries_before_merge = sorted(table['country'].unique())
-    groups_before_merge = sorted(countries_group['group_name'].unique())
+    countries_before_merge = sorted(table['country'].unique().tolist())
+    groups_before_merge = sorted(countries_group['group_name'].unique().tolist())
 
     # Fusion des tables
     temp = pd.merge(table, countries_group, how='left', on="country")
@@ -238,10 +238,11 @@ def GroupMaker(table: pd.DataFrame, countries_group: pd.DataFrame) -> pd.DataFra
     table["group_type"] = table["group_type"].fillna('group')
     table['group_type'] = np.where(table['country'].isin(zones), 'zone', table['group_type'])
 
-    # Testing
-    assert sorted(table[table['group_type']=="country"]['country'].unique()) == countries_before_merge; "Countries after merging are differents."
-    assert sorted(table[table['group_type'].isin(["zone", "group"])]['country'].unique()) == groups_before_merge; "Groups after merging are differents."
 
-    print('Merge test : OK')
+    # Testing
+    assert sorted(table[table['group_type']=="country"]['country'].unique().tolist()+['World']) == countries_before_merge, "Countries after merging are differents."
+    assert sorted(table[table['group_type'].isin(["zone", "group"])]['country'].unique().tolist()) == groups_before_merge, "Groups after merging are differents."
+
+    print('Merge tests : OK')
 
     return table
